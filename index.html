@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Link para WhatsApp</title>
+    <!-- Import Google Fonts: Plus Jakarta Sans for UI & JetBrains Mono for the link text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-decorations" aria-hidden="true">
+        <div class="glow-circle glow-1"></div>
+        <div class="glow-circle glow-2"></div>
+    </div>
+
+    <main class="app-card">
+        <header class="app-header">
+            <div class="logo-area">
+                <span class="logo-icon">🔗</span>
+                <h1>Gerador de Link WhatsApp</h1>
+            </div>
+            <p>Compartilhe seu contato do WhatsApp de forma inteligente com links personalizados</p>
+        </header>
+
+        <div class="app-content">
+            <!-- Coluna da Esquerda: Inputs -->
+            <section class="form-section">
+                <div class="input-group">
+                    <label for="phone-input">
+                        <span class="label-icon">📞</span> Seu WhatsApp (pode editar)
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="tel" id="phone-input" placeholder="Carregando número..." autocomplete="tel">
+                    </div>
+                    <small class="helper-text">Insira o número completo com DDD (ex: 5511999999999)</small>
+                </div>
+
+                <div class="input-group">
+                    <label for="message-input">
+                        <span class="label-icon">✉️</span> Digite a mensagem do seu post
+                    </label>
+                    <div class="input-wrapper">
+                        <textarea id="message-input" placeholder="Ex: Olá! Vi seu post no Instagram e gostaria de saber mais..."></textarea>
+                    </div>
+                    <div class="textarea-footer">
+                        <span class="helper-text">Esta mensagem aparecerá pré-preenchida para o cliente.</span>
+                        <span class="char-count" id="char-count">0 caracteres</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Coluna da Direita: Preview e Link Final -->
+            <section class="preview-section">
+                <!-- Mockup do Chat de WhatsApp -->
+                <div class="whatsapp-mockup">
+                    <div class="mockup-header">
+                        <div class="user-avatar">
+                            <span class="avatar-icon">💬</span>
+                        </div>
+                        <div class="user-details">
+                            <span class="user-name">Cliente (Simulação)</span>
+                            <span class="user-status">online</span>
+                        </div>
+                    </div>
+                    <div class="mockup-body">
+                        <div class="chat-bg-overlay"></div>
+                        <div class="message-bubble received" id="preview-bubble-received">
+                            <p class="bubble-text">Olá! Estou interessado no seu produto.</p>
+                            <span class="bubble-time" id="received-bubble-time">14:30</span>
+                        </div>
+                        <div class="message-bubble sent" id="preview-bubble-sent">
+                            <p class="bubble-text" id="preview-text">Sua mensagem aparecerá aqui...</p>
+                            <div class="bubble-info">
+                                <span class="bubble-time" id="sent-bubble-time">14:31</span>
+                                <span class="double-tick">✓✓</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ações e Link Gerado -->
+                <div class="action-container">
+                    <h2 class="section-title">Seu Link Gerado</h2>
+                    <div class="link-output-box">
+                        <div class="link-field-container">
+                            <input type="text" id="final-link" placeholder="O link aparecerá aqui..." readonly>
+                        </div>
+                        <button id="copy-btn" class="copy-button" aria-label="Copiar Link">
+                            <span class="btn-text">Copiar</span>
+                            <span class="btn-success-text">Copiado!</span>
+                        </button>
+                    </div>
+                    <p class="hint">
+                        <a id="test-link-btn" href="#" target="_blank" class="test-link-disabled">
+                            <span class="icon">🚀</span> Clique aqui para testar o link
+                        </a>
+                    </p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="app-footer">
+        <p>Desenvolvido com foco em alta performance e responsividade</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

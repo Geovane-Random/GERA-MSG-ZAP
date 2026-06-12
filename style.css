@@ -1,0 +1,578 @@
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+:root {
+    --bg-primary: #090d16;
+    --bg-card: rgba(19, 27, 46, 0.85);
+    --border-color: rgba(255, 255, 255, 0.08);
+    --border-focus: #10b981;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    
+    --brand-emerald: #10b981;
+    --brand-emerald-hover: #059669;
+    --brand-emerald-glow: rgba(16, 185, 129, 0.15);
+    
+    /* WhatsApp Colors */
+    --wa-green: #25d366;
+    --wa-header-bg: #1f2c34;
+    --wa-body-bg: #0b141a;
+    --wa-bubble-sent: #005c4b;
+    --wa-bubble-received: #202c33;
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Background Glow Effects */
+.background-decorations {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.glow-circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.15;
+}
+
+.glow-1 {
+    top: -10%;
+    left: -10%;
+    width: 40vw;
+    height: 40vw;
+    background-color: var(--brand-emerald);
+}
+
+.glow-2 {
+    bottom: -10%;
+    right: -10%;
+    width: 35vw;
+    height: 35vw;
+    background-color: #3b82f6;
+}
+
+/* Main Layout Card */
+.app-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 1040px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    transition: var(--transition-smooth);
+}
+
+.app-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.logo-icon {
+    font-size: 2.2rem;
+    animation: pulse-slow 3s infinite ease-in-out;
+}
+
+.app-header h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    background: linear-gradient(135deg, #ffffff 30%, #a7f3d0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.app-header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* App Content Split Layout */
+.app-content {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+/* Left Column - Input Form */
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.input-group label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.label-icon {
+    opacity: 0.8;
+}
+
+.input-wrapper {
+    position: relative;
+    border-radius: 12px;
+    transition: var(--transition-smooth);
+}
+
+.input-group input[type="tel"],
+.input-group textarea {
+    width: 100%;
+    background-color: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-primary);
+    padding: 1rem 1.25rem;
+    font-size: 1rem;
+    outline: none;
+    transition: var(--transition-smooth);
+}
+
+.input-group input[type="tel"] {
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+}
+
+.input-group textarea {
+    height: 160px;
+    resize: none;
+    line-height: 1.5;
+}
+
+.input-group input[type="tel"]:focus,
+.input-group textarea:focus {
+    border-color: var(--border-focus);
+    background-color: rgba(15, 23, 42, 0.9);
+    box-shadow: 0 0 0 4px var(--brand-emerald-glow);
+}
+
+.helper-text {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.textarea-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    gap: 1rem;
+}
+
+.char-count {
+    font-weight: 500;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+/* Right Column - Preview Section */
+.preview-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    height: 100%;
+}
+
+/* WhatsApp Phone Mockup */
+.whatsapp-mockup {
+    background-color: var(--wa-body-bg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+}
+
+.mockup-header {
+    background-color: var(--wa-header-bg);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    background-color: #4f5e67;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.avatar-icon {
+    font-size: 1.1rem;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #e9edef;
+}
+
+.user-status {
+    font-size: 0.75rem;
+    color: #8696a0;
+}
+
+.mockup-body {
+    flex-grow: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    position: relative;
+    overflow-y: auto;
+}
+
+.chat-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--wa-body-bg);
+    background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 0);
+    background-size: 16px 16px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.message-bubble {
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    max-width: 85%;
+    font-size: 0.88rem;
+    line-height: 1.4;
+    position: relative;
+    z-index: 1;
+    animation: bubble-appear 0.25s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+}
+
+.message-bubble.received {
+    align-self: flex-start;
+    background-color: var(--wa-bubble-received);
+    color: #e9edef;
+    border-top-left-radius: 0;
+}
+
+.message-bubble.sent {
+    align-self: flex-end;
+    background-color: var(--wa-bubble-sent);
+    color: #e9edef;
+    border-top-right-radius: 0;
+}
+
+.bubble-text {
+    word-break: break-word;
+    white-space: pre-wrap;
+}
+
+.bubble-info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.25rem;
+    margin-top: 0.2rem;
+    font-size: 0.68rem;
+    color: rgba(233, 237, 239, 0.6);
+}
+
+.double-tick {
+    color: #53bdeb;
+}
+
+/* Actions Section */
+.action-container {
+    background-color: rgba(15, 23, 42, 0.4);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.link-output-box {
+    display: flex;
+    border: 1px solid var(--border-color);
+    background-color: rgba(9, 13, 22, 0.8);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.link-output-box:focus-within {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px var(--brand-emerald-glow);
+}
+
+.link-field-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+}
+
+#final-link {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--brand-emerald);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: default;
+}
+
+/* Copy Button Styling */
+.copy-button {
+    background-color: var(--brand-emerald);
+    color: #000;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border: none;
+    padding: 0.75rem 1.25rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-width: 90px;
+    position: relative;
+    overflow: hidden;
+}
+
+.copy-button:hover {
+    background-color: var(--brand-emerald-hover);
+}
+
+.btn-success-text {
+    display: none;
+}
+
+/* Copy Button Success State */
+.copy-button.copied {
+    background-color: #22c55e;
+    color: #fff;
+}
+
+.copy-button.copied .btn-text {
+    display: none;
+}
+
+.copy-button.copied .btn-success-text {
+    display: inline-block;
+}
+
+/* Test Button Link */
+.hint {
+    text-align: center;
+    margin-top: 0.25rem;
+}
+
+#test-link-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    transition: var(--transition-smooth);
+    width: 100%;
+}
+
+#test-link-btn:not(.test-link-disabled):hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+#test-link-btn.test-link-disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Footer styling */
+.app-footer {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: center;
+    z-index: 1;
+}
+
+/* Animations */
+@keyframes pulse-slow {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+@keyframes bubble-appear {
+    0% {
+        opacity: 0;
+        transform: scale(0.9) translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* MEDIA QUERIES - RESPONSIVIDADE COMPLETA */
+
+@media (max-width: 900px) {
+    .app-card {
+        padding: 2rem 1.5rem;
+        max-width: 700px;
+    }
+    
+    .app-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .preview-section {
+        flex-direction: column-reverse; /* Coloca as ações primeiro no mobile para melhor usabilidade */
+    }
+    
+    .whatsapp-mockup {
+        height: 200px; /* Reduz a altura levemente no mobile para economizar espaço */
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 1rem 0.5rem;
+    }
+    
+    .app-card {
+        padding: 1.5rem 1rem;
+        border-radius: 16px;
+    }
+    
+    .app-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .app-header p {
+        font-size: 0.95rem;
+    }
+    
+    .input-group input[type="tel"],
+    .input-group textarea {
+        padding: 0.85rem 1rem;
+    }
+    
+    .copy-button {
+        padding: 0.75rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .whatsapp-mockup {
+        height: 180px;
+    }
+}
+
+/* Suporte a alturas de tela muito pequenas para evitar cortes verticais */
+@media (max-height: 700px) {
+    body {
+        padding: 1rem 0.5rem;
+    }
+    
+    .app-header {
+        margin-bottom: 1.5rem;
+    }
+    
+    .app-header h1 {
+        font-size: 1.6rem;
+    }
+    
+    .whatsapp-mockup {
+        height: 150px;
+    }
+}
+
